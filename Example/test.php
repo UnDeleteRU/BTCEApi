@@ -1,7 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../BTCEApiNoKey.php';
-require_once __DIR__ . '/../BTCEApiException.php';
+require_once __DIR__ . '/../loader.php';
 
 $pair = 'btc_usd';
 $api = new BTCEApiNoKey();
