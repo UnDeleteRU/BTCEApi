@@ -19,13 +19,18 @@ class BTCEApiNoKey
             CURLOPT_SSL_VERIFYHOST => 0
         ]);
 
-        $result = curl_exec($curl);
+        $response = curl_exec($curl);
 
-        if (!$result) {
-            throw new BTCEApiException(sprintf('Curl error #%d: %s', curl_errno($curl), curl_error($curl)));
+        if (!$response) {
+            $this->throwCurlException($curl);
         }
 
-        return json_decode($result, true);
+        return json_decode($response, true);
+    }
+
+    protected function throwCurlException($curl)
+    {
+        throw new BTCEApiException(sprintf('Curl error #%d: %s', curl_errno($curl), curl_error($curl)));
     }
 
     public function getFee($pair)

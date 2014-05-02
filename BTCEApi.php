@@ -8,6 +8,8 @@ class BTCEApi extends BTCEApiNoKey
 
     private $noOnce;
 
+    private $funds;
+
     public function __construct($apiKey, $apiSecret)
     {
         $this->apiKey = $apiKey;
@@ -95,9 +97,13 @@ class BTCEApi extends BTCEApiNoKey
             CURLOPT_POSTFIELDS => $post_data,
         ));
 
-        $res = curl_exec($curl);
+        $response = curl_exec($curl);
 
-        $result = json_decode($res, true);
+        if (!$response) {
+            $this->throwCurlException($curl);
+        }
+
+        $result = json_decode($response, true);
 
         if ($result['success']) {
             if (isset($result['funds'])) {
