@@ -2,6 +2,11 @@
 
 class BTCEApiNoKey
 {
+    /**
+     * @param $pair
+     * @param $method
+     * @return []
+     */
     protected function get($pair, $method)
     {
         $url = sprintf("https://btc-e.com/api/2/%s/%s", $pair, $method);
@@ -15,6 +20,10 @@ class BTCEApiNoKey
         ]);
 
         $result = curl_exec($curl);
+
+        if (!$result) {
+            throw new BTCEApiException(sprintf('Curl error #%d: %s', curl_errno($curl), curl_error($curl)));
+        }
 
         return json_decode($result, true);
     }

@@ -1,14 +1,20 @@
 <?php
 
 require_once __DIR__ . '/../BTCEApiNoKey.php';
+require_once __DIR__ . '/../BTCEApiException.php';
 
 $pair = 'btc_usd';
 $api = new BTCEApiNoKey();
 
-$fee = $api->getFee($pair);
-$depth = $api->getDepth($pair);
-$ticker = $api->getTicker($pair);
-$trades = $api->getTrades($pair);
+try {
+    $fee = $api->getFee($pair);
+    $depth = $api->getDepth($pair);
+    $ticker = $api->getTicker($pair);
+    $trades = $api->getTrades($pair);
+} catch (BTCEApiException $e) {
+    printf("Erorr! %s", $e->getMessage());
+    die;
+}
 
 $firstAsk = $depth['asks'][0];
 $firstBid = $depth['bids'][0];
