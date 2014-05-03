@@ -1,6 +1,8 @@
 <?php
 
-class BTCEApi extends BTCEApiNoKey
+namespace Undelete\BTCEApi;
+
+class Api extends ApiNoKey
 {
     private $apiKey;
 
@@ -23,7 +25,7 @@ class BTCEApi extends BTCEApiNoKey
             $result = $this->apiQuery('getInfo');
 
             if (!$result) {
-                throw new \Exception('Info not avalible');
+                throw new ApiException('Info not avalible');
             }
 
             $this->funds = $result['funds'];

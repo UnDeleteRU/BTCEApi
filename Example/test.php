@@ -3,14 +3,14 @@
 require_once __DIR__ . '/../loader.php';
 
 $pair = 'btc_usd';
-$api = new BTCEApiNoKey();
+$api = new Undelete\BTCEApi\ApiNoKey();
 
 try {
     $fee = $api->getFee($pair);
     $depth = $api->getDepth($pair);
     $ticker = $api->getTicker($pair);
     $trades = $api->getTrades($pair);
-} catch (BTCEApiException $e) {
+} catch (\Undelete\BTCEApi\ApiException $e) {
     printf("Erorr! %s", $e->getMessage());
     die;
 }

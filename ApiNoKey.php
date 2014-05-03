@@ -1,6 +1,8 @@
 <?php
 
-class BTCEApiNoKey
+namespace Undelete\BTCEApi;
+
+class ApiNoKey
 {
     /**
      * @param $pair
@@ -30,7 +32,7 @@ class BTCEApiNoKey
 
     protected function throwCurlException($curl)
     {
-        throw new BTCEApiException(sprintf('Curl error #%d: %s', curl_errno($curl), curl_error($curl)));
+        throw new ApiException(sprintf('Curl error #%d: %s', curl_errno($curl), curl_error($curl)));
     }
 
     public function getFee($pair)
