@@ -7,7 +7,7 @@ spl_autoload_register(function ($class) {
         return;
     }
 
-    $fileName = __DIR__ . '/' .$paths[2] . '.php';
+    $fileName = __DIR__ . '/lib/Undelete/BTCEApi/' .$paths[2] . '.php';
 
     if (file_exists($fileName)) {
         require_once $fileName;
