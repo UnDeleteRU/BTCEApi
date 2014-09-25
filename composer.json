@@ -1,0 +1,10 @@
+{
+    "name": "undelete/btce-api",
+    "description": "BTC-e Api",
+    "authors": [
+        {
+            "name": "Alexandr Alexeev",
+            "email": "undelete.jotm@gmail.com"
+        }
+    ]
+}
